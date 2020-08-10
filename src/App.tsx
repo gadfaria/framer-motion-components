@@ -1,11 +1,18 @@
-import * as React from "react";
+import React, { useState } from "react";
 import "./styles.css";
+import Input from "./components/Input";
 
 export default function App() {
+  let [test, setTest] = useState("");
+
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+    <div style={{ margin: "50px" }}>
+      <Input
+        label={"test"}
+        value={test}
+        type="text"
+        onChange={(evt) => setTest(evt.target.value)}
+      />
     </div>
   );
 }
