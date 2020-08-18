@@ -2,18 +2,27 @@ import React, { useState } from "react";
 import "./styles.css";
 import Input from "./components/Input";
 import Button from "./components/Button";
+import Modal from "./components/Modal";
+import { Root, RootAnimation } from "./util/HelperStyles";
 
 export default function App() {
-  let [test, setTest] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  let [text, setText] = useState("");
 
   return (
-    <div style={{ margin: "30px 50px" }}>
+    <Root
+      initial={"exit"}
+      animate={"enter"}
+      exit={"exit"}
+      variants={RootAnimation}
+      transition={{ duration: 1 }}
+    >
       <div style={{ margin: "10px 0px" }}>
         <Input
-          label={"test"}
-          value={test}
+          label={"text"}
+          value={text}
           type="text"
-          onChange={(evt) => setTest(evt.target.value)}
+          onChange={(evt) => setText(evt.target.value)}
         />
       </div>
 
@@ -22,8 +31,22 @@ export default function App() {
           margin: "10px 0px"
         }}
       >
-        <Button>Botão</Button>
+        <Button
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          Botão
+        </Button>
       </div>
-    </div>
+
+      <Modal
+        text={text}
+        closeModal={() => {
+          setShowModal(false);
+        }}
+        showModal={showModal}
+      />
+    </Root>
   );
 }

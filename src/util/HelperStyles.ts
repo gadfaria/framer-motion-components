@@ -18,9 +18,8 @@ export const Root = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexCenter};
+  flex-direction: column;
 `;
 
 export const RootAnimation: Variants = {
